@@ -22,7 +22,7 @@ class DashboardPostController extends Controller
     {
         $data = Post::latest()->get();
         if (!auth()->user()->is_admin) {
-            $data = Post::where('user_id', auth()->user()->id)->get();
+            $data = Post::where('user_id', auth()->user()->id)->latest()->get();
         }
 
         if ($request->ajax()) {
